@@ -8,7 +8,7 @@ from .models                                                                    
 class NewExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense
-        fields = '__all__'
+        exclude = ['date_created']
         labels = {
             'amount': 'Amount (R)',
             'date': 'Date',
