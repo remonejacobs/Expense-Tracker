@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Expense Tracker</title>
-    <link rel="stylesheet" style="{% static 'css/styles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 </head>
 <body>
     <main>
@@ -15,12 +15,17 @@
         </div>
 
         <div class="content">
-            <div class="expense-form"></div>
-            <div class="overview"></div>
-            <div class="filter"></div>
-            <div class="results"></div>
+            <div class="left-side">
+                <div class="expense-form">
+                    {% include 'expense-form.html' %}
+                </div>
+                <div class="filter"></div>
+            </div>
+            <div class="right-side">
+                <div class="overview"></div>
+                <div class="results"></div>
+            </div>
         </div>
-
     </main>
 </body>
 </html>
