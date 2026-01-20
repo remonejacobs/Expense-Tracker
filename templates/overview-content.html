@@ -1,0 +1,32 @@
+{% extends 'overview.html' %}
+
+{% block content %}
+
+    <div class="view-switch">
+        <h3 class="view">Overview</h3>
+        <a href="{% url 'expenses' %}" class="view">All Expenses</a>
+    </div>
+
+    <div class="expenses-overview">
+        <div class="total-expenses">
+            <h4>Total Expenses</h4>
+            <h2 class="amount"></h2>
+            <p>0 transactions</p>
+        </div>
+        <div class="this-month">
+            <h4>This Month</h4>
+            <h2 class="amount"></h2>
+            <p>0 transactions</p>
+        </div>
+        <div class="average-transaction">
+            <h4>Average/Transaction</h4>
+            <h2 class="amount"></h2>
+            <p>per expense</p>
+        </div>
+
+        {% block results %}
+
+        {% endblock results %}
+    </div>
+
+{% endblock content %}
