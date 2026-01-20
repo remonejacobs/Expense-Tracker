@@ -29,8 +29,8 @@
 {#                    {% include 'overview.html' %}#}
 
                     <div class="view-switch">
-                        <a href="{% url 'home' %}" class="view">Overview</a>
-                        <a href="{% url 'expenses' %}" class="view">All Expenses</a>
+                        <a href="{% url 'expense-tracker' %}" class="view">Overview</a>
+                        <a href="{% url 'expense_list' %}" class="view">All Expenses</a>
                     </div>
                     {% block overview %}
 
