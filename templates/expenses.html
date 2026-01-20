@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block overview %}
+
+    {% if not expenses %}
+        <div class="no-expenses">
+            <h3>$</h3>
+            <p>No expenses yet.Add your first expense to get started!</p>
+        </div>
+    {% endif %}
+
+    <div class="expenses">
+        <h4>Recent Expenses</h4>
+
+        {% for expense in expenses %}
+            <div class="expense">
+                <h4 class="expense-title">{{ expense.title }}</h4>
+                <h4 class="expense-category">{{ expense.category }}</h4>
+                <h4 class="expense-amount">{{ expense.amount }}</h4>
+                <h4 class="expense-date">{{ expense.date }}</h4>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock overview %}

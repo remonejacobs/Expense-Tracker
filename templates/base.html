@@ -20,13 +20,17 @@
                     {% include 'expense-form.html' %}
                 </div>
                 <div class="filter">
-                    {% include 'filter.html' %}
+                        {% include 'filter.html' %}
                 </div>
 
             </div>
             <div class="right-side">
-                <div class="overview"></div>
-                <div class="results"></div>
+                <div class="overview">
+{#                    {% include 'overview.html' %}#}
+                    {% block overview %}
+
+                    {% endblock overview %}
+                </div>
             </div>
         </div>
     </main>
