@@ -5,9 +5,10 @@
     {% if not expenses %}
         <div class="no-expenses">
             <h3>$</h3>
-            <p>No expenses yet.Add your first expense to get started!</p>
+            <p>No expenses yet. Add your first expense to get started!</p>
         </div>
-    {% endif %}
+
+    {% else %}
 
     <div class="expenses">
         <h4>Recent Expenses</h4>
@@ -21,5 +22,7 @@
             </div>
         {% endfor %}
     </div>
+
+    {% endif %}
 
 {% endblock overview %}
