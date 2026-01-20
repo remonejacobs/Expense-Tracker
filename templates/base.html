@@ -27,6 +27,11 @@
             <div class="right-side">
                 <div class="overview">
 {#                    {% include 'overview.html' %}#}
+
+                    <div class="view-switch">
+                        <a href="{% url 'home' %}" class="view">Overview</a>
+                        <a href="{% url 'expenses' %}" class="view">All Expenses</a>
+                    </div>
                     {% block overview %}
 
                     {% endblock overview %}
