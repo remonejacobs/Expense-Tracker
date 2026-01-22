@@ -14,34 +14,14 @@ class ExpenseTrackerView(View):
     def get(self, request):
         form = NewExpenseForm()
         expenses = Expense.objects.all()
-        today = timezone.now().date()
-        expenses_this_month = Expense.objects.filter(date__year=today.year, date__month=today.month)
-
-        amount_total = 0
-        expenses_count = expenses.count()
-        for expense in expenses:
-            amount_total += expense.amount
-
-        amount_month = 0
-        expenses_this_month_count = expenses_this_month.count()
-        for expense in expenses_this_month:
-            amount_month += expense.amount
-
-
-        average_amount = amount_total / expenses_count
-
 
         context = {
-            'form': form,
+            'form': NewExpenseForm(),
             'expenses': expenses,
-            'total_amount': amount_total,
-            'expenses_count': expenses_count,
-            'amount_month': amount_month,
-            'expenses_this_month_count': expenses_this_month_count,
-            'average_amount': average_amount,
             'active_tab': self.template_name.replace('.html', '')
         }
 
+        context = self.getcontext(request, expenses, context)
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -58,7 +38,34 @@ class ExpenseTrackerView(View):
             'active_tab': self.template_name.replace('.html', '')
         }
 
+        context = self.getcontext(request, expenses, context)
+
         return render(request, self.template_name, context)
+
+    def getcontext(self, request, expenses, context):
+        today = timezone.now().date()
+        expenses_this_month = Expense.objects.filter(date__year=today.year, date__month=today.month)
+
+        amount_total = 0
+        expenses_count = expenses.count()
+        for expense in expenses:
+            amount_total += expense.amount
+
+        amount_month = 0
+        expenses_this_month_count = expenses_this_month.count()
+        for expense in expenses_this_month:
+            amount_month += expense.amount
+
+        average_amount = amount_total / expenses_count
+
+        context['total_amount'] = amount_total
+        context['expenses_count'] = expenses_count
+        context['amount_month'] = amount_month
+        context['expenses_this_month_count'] = expenses_this_month_count
+        context['average_amount'] = round(average_amount,2)
+
+        return context
+
 
 class ExpenseListView(View):
     """
