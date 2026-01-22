@@ -75,6 +75,7 @@ select {
     font-size: 14px;
     outline: none;
     box-sizing: border-box;
+    width: 100%;
 }
 
 input:focus,
@@ -303,7 +304,32 @@ select:disabled {
 
 .expense {
     box-shadow: 0 0 0 1px #eee;
-    padding: 10px;
     border-radius: 14px;
     display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.expense-header {
+    display: flex;
+    gap: 15px;
+    margin: 0;
+}
+
+.expense-title {
+    font-weight: bold;
+}
+
+.expense-category {
+    box-shadow: 0 0 0 1px #eee;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.expense-date {
+    font-size: 14px;
+    margin-top: 0;
 }
