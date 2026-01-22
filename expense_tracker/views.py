@@ -1,7 +1,10 @@
 
 from django.utils                                           import timezone
 from django.shortcuts                                       import render
+from django.urls                                            import reverse_lazy
 from django.views                                           import View
+from django.views.generic                                   import DeleteView
+
 from .forms                                                 import NewExpenseForm
 from .models                                                import Expense
 
@@ -85,3 +88,25 @@ class ExpenseListView(View):
         render_response = render(request, self.template_name, context)
 
         return render_response
+
+    def post(self, request):
+        form = NewExpenseForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+        expenses = Expense.objects.all()
+
+        context = {
+            'form': NewExpenseForm(),
+            'expenses': expenses,
+            'active_tab': self.template_name.replace('.html', '')
+        }
+
+        return render(request, self.template_name, context)
+
+class ExpenseDelete(DeleteView):
+
+    model = Expense
+    template_name = 'expense-delete.html'
+    success_url = reverse_lazy('expense_list')

@@ -24,6 +24,7 @@
                     </div>
                     <div class="expense-amount">
                         <h4 class="expense-amount">ZAR {{ expense.amount }}</h4>
+                        <a href="{% url 'expense_delete' expense.id %}" class="delete-btn">🗑</a>
                     </div>
                 </div>
             {% endfor %}
