@@ -1,7 +1,9 @@
+
+from django.utils                                           import timezone
 from django.shortcuts                                       import render
 from django.views                                           import View
 from .forms                                                 import NewExpenseForm
-from .models import Expense
+from .models                                                import Expense
 
 
 # Create your views here.
@@ -12,10 +14,31 @@ class ExpenseTrackerView(View):
     def get(self, request):
         form = NewExpenseForm()
         expenses = Expense.objects.all()
+        today = timezone.now().date()
+        expenses_this_month = Expense.objects.filter(date__year=today.year, date__month=today.month)
+
+        amount_total = 0
+        expenses_count = expenses.count()
+        for expense in expenses:
+            amount_total += expense.amount
+
+        amount_month = 0
+        expenses_this_month_count = expenses_this_month.count()
+        for expense in expenses_this_month:
+            amount_month += expense.amount
+
+
+        average_amount = amount_total / expenses_count
+
 
         context = {
             'form': form,
             'expenses': expenses,
+            'total_amount': amount_total,
+            'expenses_count': expenses_count,
+            'amount_month': amount_month,
+            'expenses_this_month_count': expenses_this_month_count,
+            'average_amount': average_amount,
         }
 
         return render(request, self.template_name, context)
