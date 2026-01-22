@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 
 class CalendarView(TemplateView):
-    template_name = "calendar_widget.html"
+    template_name = "calendar.html"
     def get(self, request, *args, **kwargs):
         today = date.today()
         month = today.month
