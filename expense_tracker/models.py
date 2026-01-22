@@ -3,15 +3,15 @@ from django.db import models
 # Create your models here.
 class Expense(models.Model):
     CATEGORY_CHOICES = [
-        ("Fixed/Essential", "Fixed/Essential"),
-        ("Food & Daily Living", "Food & Daily Living"),
-        ("Transportation", "Transportation"),
-        ("Personal & Lifestyle", "Personal & Lifestyle"),
-        ("Health & Wellness", "Health & Wellness"),
-        ("Education", "Education"),
-        ("Entertainment & Social", "Entertainment & Social"),
-        ("Work/Business", "Work/Business"),
-        ("Giving & Miscellaneous", "Giving & Miscellaneous"),
+        ("Fixed/Essential", "🏠 Fixed/Essential"),
+        ("Food & Daily Living", "🍽️ Food & Daily Living"),
+        ("Transportation", "🚗 Transportation"),
+        ("Personal & Lifestyle", "🧍 Personal & Lifestyle"),
+        ("Health & Wellness", "🏥 Health & Wellness"),
+        ("Education", "🎓 Education"),
+        ("Entertainment & Social", "🎉 Entertainment & Social"),
+        ("Work/Business", "💼 Work/Business"),
+        ("Giving & Miscellaneous", "🎁 Giving & Miscellaneous"),
     ]
 
     amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -23,3 +23,6 @@ class Expense(models.Model):
 
     def __str__(self):
         return self.expense_name
+
+    class Meta:
+        ordering = ["-date_created", "-date"]
