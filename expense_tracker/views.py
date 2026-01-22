@@ -11,7 +11,14 @@ class ExpenseTrackerView(View):
 
     def get(self, request):
         form = NewExpenseForm()
-        return render(request, self.template_name, {'form': form})
+        expenses = Expense.objects.all()
+
+        context = {
+            'form': form,
+            'expenses': expenses,
+        }
+
+        return render(request, self.template_name, context)
 
     def post(self, request):
         form = NewExpenseForm(request.POST)
@@ -21,9 +28,12 @@ class ExpenseTrackerView(View):
 
         expenses = Expense.objects.all()
 
-        return render(request, 'results.html', {'expenses': expenses})
+        context = {
+            'form': NewExpenseForm(),
+            'expenses': expenses,
+        }
 
-
+        return render(request, self.template_name, context)
 
 class ExpenseListView(View):
     """
@@ -34,8 +44,10 @@ class ExpenseListView(View):
     def get(self, request):
         expenses = Expense.objects.all()
 
-        context = {'expenses': expenses}
-        print(context)
+        context = {
+            'form': NewExpenseForm(),
+            'expenses': expenses
+        }
 
         render_response = render(request, self.template_name, context)
 

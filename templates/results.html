@@ -1,7 +1,10 @@
-{% extends 'overview.html' %}
 
-{% block results %}
+{% if not expenses %}
 
-    <h2>Should work!</h2>
+    <h2>No expenses in here!</h2>
 
-{% endblock results %}
+{% else %}
+
+    <h2>Expenses in here!</h2>
+
+{% endif %}
