@@ -288,3 +288,22 @@ select:disabled {
     font-size: 20px;
     color: #666666;
 }
+
+.expenses {
+    width: 100%;
+    border: 1px solid #f1f1f3;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0 1px #eee;
+    margin-top: 40px;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.expense {
+    box-shadow: 0 0 0 1px #eee;
+    padding: 10px;
+    border-radius: 14px;
+    display: flex;
+}
