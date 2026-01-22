@@ -16,6 +16,7 @@ class ExpenseTrackerView(View):
         context = {
             'form': form,
             'expenses': expenses,
+            'active_tab': self.template_name.replace('.html', '')
         }
 
         return render(request, self.template_name, context)
@@ -31,6 +32,7 @@ class ExpenseTrackerView(View):
         context = {
             'form': NewExpenseForm(),
             'expenses': expenses,
+            'active_tab': self.template_name.replace('.html', '')
         }
 
         return render(request, self.template_name, context)
@@ -46,7 +48,8 @@ class ExpenseListView(View):
 
         context = {
             'form': NewExpenseForm(),
-            'expenses': expenses
+            'expenses': expenses,
+            'active_tab': 'expenses'
         }
 
         render_response = render(request, self.template_name, context)
