@@ -1,12 +1,42 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    {% if not expenses %}
 
-{% if not expenses %}
+        <h2>No expenses in here!</h2>
 
-    <h2>No expenses in here!</h2>
+    {% else %}
+        <div class="expense">
+            <h2>Spending Analysis by Category</h2>
+            <canvas id="spendingAnalysis" width="300" height="300"></canvas>
+            <script>
+                const labels = {{ labels|safe }};
+                const data = {{ data|safe }};
 
-{% else %}
-    <div class="expense">
-        <h2>Spending Analysis by Category</h2>
-    </div>
+                const ctx = document.getElementById('spendingAnalysis').getContext('2d');
+
+                new Chart(ctx,{
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: ['rgba(156, 93, 82, 1)',
+                                              'rgba(198, 40, 40, 1)',
+                                              'rgba(25, 118, 210, 1)',
+                                              'rgba(123, 31, 162, 1)',
+                                              'rgba(0, 150, 136, 1)',
+                                              'rgba(33, 56, 103, 1)',
+                                              'rgba(255, 64, 129, 1)',
+                                              'rgba(33, 150, 243, 1)',
+                                              'rgba(255, 193, 7, 1)']
+                        }]
+                    }
+                })
+            </script>
+        </div>
 
 
-{% endif %}
+    {% endif %}
+</body>

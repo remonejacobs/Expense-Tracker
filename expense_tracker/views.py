@@ -1,4 +1,4 @@
-
+import math
 from django.utils                                           import timezone
 from django.shortcuts                                       import render
 from django.urls                                            import reverse_lazy
@@ -61,13 +61,39 @@ class ExpenseTrackerView(View):
 
         average_amount = amount_total / expenses_count
 
+        labels = ["Fixed/Essential",
+                  "Food & Daily Living",
+                  "Transportation",
+                  "Personal & Lifestyle",
+                  "Health & Wellness",
+                  "Education",
+                  "Entertainment & Social",
+                  "Work/Business",
+                  "Giving & Miscellaneous"]
+        data = self.pie_chart(request, expenses, labels)
+
         context['total_amount'] = amount_total
         context['expenses_count'] = expenses_count
         context['amount_month'] = amount_month
         context['expenses_this_month_count'] = expenses_this_month_count
-        context['average_amount'] = round(average_amount,2)
+        context['average_amount'] = round(average_amount, 2)
+        context['data'] = data
+        context['labels'] = labels
 
         return context
+
+    def pie_chart(self, request, expenses, labels):
+        category_amounts = []
+        for label in labels:
+            total_amount = 0
+            for expense in expenses:
+                if expense.category == label:
+                    total_amount += expense.amount
+            category_amounts.append(math.ceil(total_amount))
+
+
+        return category_amounts
+
 
 
 class ExpenseListView(View):
