@@ -7,9 +7,9 @@
         <h2>No expenses in here!</h2>
 
     {% else %}
-        <div class="expense">
+        <div class="results">
             <h2>Spending Analysis by Category</h2>
-            <canvas id="spendingAnalysis" width="300" height="300"></canvas>
+            <canvas id="spendingAnalysis" width="500" height="500"></canvas>
             <script>
                 const labels = {{ labels|safe }};
                 const data = {{ data|safe }};
@@ -32,6 +32,25 @@
                                               'rgba(33, 150, 243, 1)',
                                               'rgba(255, 193, 7, 1)']
                         }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'left',
+                                labels: {
+                                    font: { size: 15 },
+                                    usePointStyle: true,
+                                    align: "start",
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: ctx => `${ctx.label}: R${ctx.parsed}`
+                                }
+                            }
+                        }
                     }
                 })
             </script>
