@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 'crispy_bootstrap5',
 
     'expense_tracker.apps.BaseConfig',
+    'calendar_widget.apps.CalendarConfig',
 ]
 
 # CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
