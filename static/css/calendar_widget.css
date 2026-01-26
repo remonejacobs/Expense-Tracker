@@ -1,0 +1,55 @@
+.calendar_widget {
+    width: 250px;               /* Small sidebar size */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.calendar_widget h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.calendar_widget table.month {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.calendar_widget th.month {
+    background-color: #f4f4f4;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.calendar_widget th,
+.calendar_widget td {
+    padding: 6px;
+    border: 1px solid #ddd;
+}
+
+.calendar_widget td.noday {
+    background-color: #f9f9f9;
+    color: #aaa;
+}
+
+.calendar_widget td:hover {
+    background-color: #e0f7fa;
+    cursor: pointer;
+}
+
+.calendar_widget th.mon,
+.calendar_widget th.tue,
+.calendar_widget th.wed,
+.calendar_widget th.thu,
+.calendar_widget th.fri,
+.calendar_widget th.sat,
+.calendar_widget th.sun {
+    background-color: #f0f0f0;
+}
